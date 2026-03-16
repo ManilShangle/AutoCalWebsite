@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 216 28% 7%;
+    --foreground: 210 40% 96%;
+
+    --card: 215 28% 11%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 215 28% 11%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 224 100% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 20% 16%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 215 20% 16%;
+    --muted-foreground: 212 10% 58%;
+
+    --accent: 224 100% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 100% / 0.1;
+    --input: 0 0% 100% / 0.1;
+    --ring: 224 100% 65%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 216 28% 7%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 224 100% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 20% 16%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 0 0% 100% / 0.1;
+    --sidebar-ring: 224 100% 65%;
+
+    --glow-primary: 0 0 20px hsl(224 100% 65% / 0.3);
+    --glow-primary-hover: 0 0 30px hsl(224 100% 65% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-border rounded-xl;
+  }
+  .glass-nav {
+    @apply bg-background/80 backdrop-blur-xl border-b border-border;
+  }
+  .glow-button {
+    box-shadow: var(--glow-primary);
+    transition: box-shadow 0.2s ease, transform 0.1s ease;
+  }
+  .glow-button:hover {
+    box-shadow: var(--glow-primary-hover);
+  }
+  .glow-button:active {
+    transform: scale(0.98);
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
