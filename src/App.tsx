@@ -28,16 +28,11 @@ const SPARedirect = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const redirectPath = searchParams.get('redirect');
-
-    if (redirectPath) {
-      // Remove the redirect query parameter and navigate to the actual path
-      const newSearch = new URLSearchParams(location.search);
-      newSearch.delete('redirect');
-      const newSearchString = newSearch.toString();
-      const newUrl = redirectPath + (newSearchString ? '?' + newSearchString : '') + location.hash;
-      navigate(newUrl, { replace: true });
+    // Check if we have a hash that looks like a route (starts with /)
+    if (location.hash && location.hash.startsWith('#/')) {
+      const hashPath = location.hash.substring(1); // Remove the #
+      // Navigate to the path using React Router
+      navigate(hashPath, { replace: true });
     }
   }, [location, navigate]);
 
