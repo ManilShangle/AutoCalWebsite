@@ -29,8 +29,8 @@ const Navbar = () => {
 
         {/* Desktop */}
         <nav className="hidden md:flex items-center gap-8">
-          <button onClick={() => scrollOrNav("features")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Features</button>
           <button onClick={() => scrollOrNav("how-it-works")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">How it Works</button>
+          <button onClick={() => scrollOrNav("features")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">Features</button>
           <a href={CHROME_STORE_URL}>
             <Button size="sm" className="glow-button bg-primary text-primary-foreground hover:bg-primary/90">
               Add to Chrome - Free
