@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -25,17 +25,21 @@ const ScrollToTop = () => {
 // Handle SPA redirects from 404.html
 const SPARedirect = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const path = searchParams.get('/');
+    const redirectPath = searchParams.get('redirect');
 
-    if (path) {
-      // Remove the query parameter and navigate to the actual path
-      const cleanPath = path.replace(/~and~/g, '&');
-      window.history.replaceState(null, '', cleanPath);
+    if (redirectPath) {
+      // Remove the redirect query parameter and navigate to the actual path
+      const newSearch = new URLSearchParams(location.search);
+      newSearch.delete('redirect');
+      const newSearchString = newSearch.toString();
+      const newUrl = redirectPath + (newSearchString ? '?' + newSearchString : '') + location.hash;
+      navigate(newUrl, { replace: true });
     }
-  }, [location]);
+  }, [location, navigate]);
 
   return null;
 };
