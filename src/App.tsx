@@ -22,12 +22,31 @@ const ScrollToTop = () => {
   return null;
 };
 
+// Handle SPA redirects from 404.html
+const SPARedirect = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const path = searchParams.get('/');
+
+    if (path) {
+      // Remove the query parameter and navigate to the actual path
+      const cleanPath = path.replace(/~and~/g, '&');
+      window.history.replaceState(null, '', cleanPath);
+    }
+  }, [location]);
+
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter basename="/AutoCalWebsite">
+        <SPARedirect />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
