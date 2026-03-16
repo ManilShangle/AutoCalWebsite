@@ -48,8 +48,8 @@ const Navbar = () => {
       {open && (
         <div className="md:hidden glass-nav border-t border-border pb-4">
           <div className="container flex flex-col gap-4 pt-4">
-            <button onClick={() => scrollOrNav("features")} className="text-sm text-muted-foreground hover:text-foreground text-left">Features</button>
             <button onClick={() => scrollOrNav("how-it-works")} className="text-sm text-muted-foreground hover:text-foreground text-left">How it Works</button>
+            <button onClick={() => scrollOrNav("features")} className="text-sm text-muted-foreground hover:text-foreground text-left">Features</button>
             <a href={CHROME_STORE_URL}>
               <Button size="sm" className="glow-button bg-primary text-primary-foreground hover:bg-primary/90 w-full">
                 Add to Chrome - Free
