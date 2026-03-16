@@ -14,7 +14,6 @@ const Contact = () => {
     e.preventDefault();
     setSending(true);
 
-    // Note: Replace 'YOUR_FORMSPREE_FORM_ID' with your actual Formspree form ID
     const formData = new FormData();
     formData.append('name', form.name);
     formData.append('email', form.email);
