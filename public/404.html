@@ -4,32 +4,37 @@
     <meta charset="utf-8">
     <title>AutoCal</title>
     <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      // This script takes the current url and converts the path and query
-      // string into just a query string, and then redirects the browser
-      // to the new url with only a query string and hash fragment,
-      // e.g., https://www.foo.tld/one/two?a=b&c=d#qwe, becomes
-      // https://www.foo.tld/?/one/two&a=b~and~c=d#qwe
-      // Note: this 404.html file must be at least 512 bytes for it to work
-      // with Internet Explorer (it is currently > 512 bytes)
-
-      // If you're creating a Project Pages site and NOT using a custom domain,
-      // then set pathSegmentsToKeep to 1 (enterprise users may need to set it to > 1).
-      // This way the code will only replace the route part and not the real directory.
-      // For example, if your repository path is /AutoCalWebsite/, then set pathSegmentsToKeep to 1.
-      // If your repository path is /AutoCalWebsite/subfolder/, then set pathSegmentsToKeep to 2.
+      // HashRouter redirect for GitHub Pages
+      // This fixes direct navigation and page reload issues for SPA routing
+      
       var pathSegmentsToKeep = 1;
-
       var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+      
+      // Get the full pathname
+      var pathname = l.pathname;
+      
+      // Handle the case where we're at the root or a subdirectory
+      // e.g., /AutoCalWebsite/privacy -> /#/privacy
+      if (pathname.indexOf('/AutoCalWebsite') === 0) {
+        // Remove /AutoCalWebsite prefix
+        var path = pathname.slice('/AutoCalWebsite'.length);
+        
+        // If path is empty or just a slash, go to home
+        if (!path || path === '/') {
+          path = '/';
+        } else {
+          // Remove leading slash from path
+          path = path.replace(/^\//, '');
+        }
+        
+        // Build new URL with hash routing
+        var newUrl = l.protocol + '//' + l.hostname + '/AutoCalWebsite/#/' + path;
+        l.replace(newUrl);
+      } else if (pathname !== '/' && pathname !== '') {
+        // If somehow we got a path without AutoCalWebsite prefix, still try to redirect
+        var simplePath = pathname.replace(/^\//, '');
+        l.replace(l.protocol + '//' + l.hostname + '/AutoCalWebsite/#/' + simplePath);
+      }
     </script>
   </head>
   <body>
