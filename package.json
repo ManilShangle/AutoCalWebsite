@@ -2,7 +2,7 @@
   "name": "vite_react_shadcn_ts",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://ManilShangle.github.io/AutoCalWebsite",
+  "homepage": "https://ManilShangle.github.io/AutoCal-Website",
   "type": "module",
   "scripts": {
     "dev": "vite",
