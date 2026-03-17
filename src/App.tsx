@@ -27,7 +27,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename="/AutoCal-Website">
+      <BrowserRouter basename="/AutoCalWebsite">
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
