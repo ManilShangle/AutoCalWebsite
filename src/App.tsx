@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -22,13 +22,25 @@ const ScrollToTop = () => {
   return null;
 };
 
+// Redirect .html URLs to clean URLs
+const HtmlRedirect = () => {
+  const { pathname } = useLocation();
+  
+  if (pathname.endsWith('.html')) {
+    return <Navigate to={pathname.replace('.html', '')} replace />;
+  }
+  
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <HashRouter>
+      <BrowserRouter basename="/AutoCalWebsite">
         <ScrollToTop />
+        <HtmlRedirect />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/privacy" element={<Privacy />} />
@@ -36,7 +48,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );

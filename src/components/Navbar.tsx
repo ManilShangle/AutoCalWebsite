@@ -15,7 +15,7 @@ const Navbar = () => {
     if (isHome) {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     } else {
-      window.location.href = `/#/${id}`;
+      window.location.href = `/#${id}`;
     }
   };
 
@@ -23,7 +23,7 @@ const Navbar = () => {
     <header className="fixed top-0 left-0 right-0 z-50 glass-nav">
       <div className="container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/images/icon128.png" alt="AutoCal" className="w-8 h-8 rounded-lg" />
+          <img src="/AutoCalWebsite/images/icon128.png" alt="AutoCal" className="w-8 h-8 rounded-lg" />
           <span className="font-display font-bold text-lg text-foreground">AutoCal</span>
         </Link>
 
