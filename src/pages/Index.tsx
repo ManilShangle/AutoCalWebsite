@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import ExtensionMockup from "@/components/ExtensionMockup";
 
-const CHROME_STORE_URL = "#";
+const CHROME_STORE_URL = "https://chromewebstore.google.com/detail/autocal/gmefkfopmlmjedipnjmjielmphodpphn";
 
 const Index = () => {
   return (
