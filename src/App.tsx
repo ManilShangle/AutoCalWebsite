@@ -38,7 +38,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename="/AutoCalWebsite">
+      <BrowserRouter>
         <ScrollToTop />
         <HtmlRedirect />
         <Routes>

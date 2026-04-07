@@ -1,7 +1,7 @@
 const ExtensionMockup = () => (
   <div className="w-full max-w-[390px] glass-card p-5 space-y-4 shadow-2xl">
     <div className="flex items-center gap-2 mb-2">
-      <img src="/AutoCalWebsite/images/icon128.png" alt="" className="w-5 h-5 rounded" />
+      <img src="/images/icon128.png" alt="" className="w-5 h-5 rounded" />
       <span className="font-display font-semibold text-sm text-foreground">AutoCal</span>
       <span className="ml-auto text-xs text-muted-foreground">Ready</span>
     </div>
