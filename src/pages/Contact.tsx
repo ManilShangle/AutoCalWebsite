@@ -20,7 +20,7 @@ const Contact = () => {
     formData.append('message', form.message);
 
     try {
-      const response = await fetch('https://formspree.io/f/xwvrrazr', {
+      const response = await fetch('https://formspree.io/f/xvzvnoqn', {
         method: 'POST',
         body: formData,
         headers: {
