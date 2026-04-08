@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import {
   Camera, Cpu, MousePointerClick, Crop, PenLine, Link2,
-  Clock, Globe, CheckCircle, Zap, ArrowRight,
+  Clock, Globe, ArrowRight,
 } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Navbar from "@/components/Navbar";
@@ -10,316 +10,389 @@ import ExtensionMockup from "@/components/ExtensionMockup";
 
 const CHROME_STORE_URL = "https://chromewebstore.google.com/detail/autocal/gmefkfopmlmjedipnjmjielmphodpphn";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (i: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
-  }),
+const stagger = {
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+const item = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
 };
 
-const Index = () => {
-  return (
-    <div className="noise relative bg-background overflow-x-hidden">
+const Index = () => (
+  <div className="bg-background text-foreground overflow-x-hidden">
+    <Navbar />
 
-      {/* ── Ambient background orbs ── */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden>
-        <div className="absolute -top-[20%] left-[5%] w-[500px] h-[500px] rounded-full bg-primary/[0.08] blur-[130px]" />
-        <div className="absolute top-[35%] -right-[10%] w-[380px] h-[380px] rounded-full bg-accent/[0.06] blur-[110px]" />
-        <div className="absolute bottom-[-15%] left-[25%] w-[460px] h-[460px] rounded-full bg-primary/[0.05] blur-[130px]" />
-      </div>
+    {/* ══════════════════════════════════════════
+        HERO — centered, serif headline, mockup below
+    ══════════════════════════════════════════ */}
+    <section className="relative min-h-[100svh] flex flex-col items-center justify-center pt-24 pb-16 px-6 text-center">
+      {/* Subtle radial bg */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 50% at 50% -10%, hsl(243 73% 59% / 0.07) 0%, transparent 70%)",
+        }}
+      />
 
-      {/* ── Dot grid ── */}
-      <div className="fixed inset-0 dot-grid pointer-events-none" aria-hidden />
+      <motion.div
+        variants={stagger}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 max-w-3xl mx-auto"
+      >
+        {/* Eyebrow */}
+        <motion.div variants={item} className="mb-7">
+          <span className="mono-label text-primary text-[11px] tracking-widest">
+            Chrome Extension · Free · Powered by GPT-4o
+          </span>
+        </motion.div>
 
-      <Navbar />
+        {/* Headline — serif italic key word */}
+        <motion.h1
+          variants={item}
+          className="serif text-[2.8rem] sm:text-[3.8rem] md:text-[4.8rem] lg:text-[5.5rem] leading-[1.05] tracking-[-0.03em] text-foreground"
+        >
+          From screenshot
+          <br />
+          to{" "}
+          <span className="serif-italic text-primary">calendar</span>
+          <br />
+          in two seconds.
+        </motion.h1>
 
-      {/* ════════════════════════════════
-          HERO
-      ════════════════════════════════ */}
-      <section className="relative min-h-[100svh] flex items-center pt-24 pb-20 sm:pt-28 sm:pb-24">
-        <div className="container relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-14 lg:gap-16">
+        {/* Sub */}
+        <motion.p
+          variants={item}
+          className="sans mt-7 text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed"
+        >
+          Stop retyping dates. AutoCal reads any event screenshot and adds it
+          to Google Calendar with one click.
+        </motion.p>
 
-            {/* Left — copy */}
-            <div className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
+        {/* CTAs */}
+        <motion.div
+          variants={item}
+          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
+        >
+          <a href={CHROME_STORE_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+            <span className="btn-primary w-full sm:w-auto justify-center text-[0.9rem] px-7 h-12">
+              Add to Chrome — Free
+            </span>
+          </a>
+          <button
+            onClick={() =>
+              document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="btn-ghost w-full sm:w-auto justify-center text-[0.9rem]"
+          >
+            See how it works <ArrowRight size={14} />
+          </button>
+        </motion.div>
 
-              {/* Pill label */}
-              <motion.div
-                variants={fadeUp} initial="hidden" animate="visible" custom={0}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/[0.08] mb-7"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse-dot" />
-                <span className="font-mono-label text-primary text-[11px]">
-                  AI-Powered Calendar Assistant
-                </span>
-              </motion.div>
-
-              {/* Headline */}
-              <motion.h1
-                variants={fadeUp} initial="hidden" animate="visible" custom={1}
-                className="text-[2.8rem] sm:text-6xl md:text-7xl lg:text-[4.75rem] font-extrabold leading-[1.04] tracking-[-0.03em]"
-              >
-                See an event.{" "}
-                <span className="text-gradient">Add it.</span>{" "}
-                Done.
-              </motion.h1>
-
-              {/* Subtext */}
-              <motion.p
-                variants={fadeUp} initial="hidden" animate="visible" custom={2}
-                className="mt-6 text-base sm:text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed"
-              >
-                Stop retyping dates. AutoCal reads any screenshot and adds the
-                event to Google Calendar in one click — powered by GPT-4o.
-              </motion.p>
-
-              {/* CTAs */}
-              <motion.div
-                variants={fadeUp} initial="hidden" animate="visible" custom={3}
-                className="mt-8 flex flex-col sm:flex-row items-center gap-3 justify-center lg:justify-start"
-              >
-                <a
-                  href={CHROME_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto"
-                >
-                  <button className="glow-button w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 rounded-xl font-semibold text-base">
-                    Add to Chrome — Free
-                  </button>
-                </a>
-                <button
-                  onClick={() =>
-                    document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="ghost-button w-full sm:w-auto px-6 h-12 rounded-xl text-sm text-foreground flex items-center justify-center gap-2"
-                >
-                  See how it works <ArrowRight size={14} />
-                </button>
-              </motion.div>
-
-              {/* Feature badges */}
-              <motion.div
-                variants={fadeUp} initial="hidden" animate="visible" custom={4}
-                className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3 justify-center lg:justify-start"
-              >
-                {[
-                  { icon: <Zap size={13} className="text-primary" />, text: "2-second setup" },
-                  { icon: <Globe size={13} className="text-primary" />, text: "Any webpage" },
-                  { icon: <CheckCircle size={13} className="text-primary" />, text: "Google Calendar" },
-                  { icon: <Cpu size={13} className="text-primary" />, text: "GPT-4o" },
-                ].map((item) => (
-                  <div key={item.text} className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                    {item.icon}
-                    <span>{item.text}</span>
-                  </div>
-                ))}
-              </motion.div>
+        {/* Stats row */}
+        <motion.div
+          variants={item}
+          className="mt-12 pt-10 border-t border-border grid grid-cols-3 gap-4 sm:gap-6"
+        >
+          {[
+            { num: "2s", label: "Average time to add an event" },
+            { num: "100+", label: "Sites where it works" },
+            { num: "Free", label: "Always, no credit card" },
+          ].map((s) => (
+            <div key={s.label} className="text-center">
+              <div className="stat-num text-foreground">{s.num}</div>
+              <div className="sans text-xs text-muted-foreground mt-1 leading-snug">{s.label}</div>
             </div>
+          ))}
+        </motion.div>
+      </motion.div>
 
-            {/* Right — floating mockup */}
+      {/* Mockup — below the copy, centered, animated float */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10 mt-16 animate-float"
+      >
+        <ExtensionMockup />
+      </motion.div>
+    </section>
+
+    {/* ══════════════════════════════════════════
+        HOW IT WORKS — vertical timeline + mockup
+    ══════════════════════════════════════════ */}
+    <section id="how-it-works" className="py-24 sm:py-32 border-t border-border">
+      <div className="container">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+
+          {/* Left: timeline */}
+          <div>
             <motion.div
-              initial={{ opacity: 0, y: 36, scale: 0.94 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.85, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="shrink-0 w-full max-w-[360px] float"
+              initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.5 }}
+              className="mb-12"
             >
-              <ExtensionMockup />
+              <span className="mono-label text-primary text-[11px]">How it works</span>
+              <h2 className="serif mt-3 text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight">
+                Three steps.
+                <br />
+                <span className="serif-italic">No friction.</span>
+              </h2>
             </motion.div>
 
-          </div>
-        </div>
-      </section>
+            <div className="space-y-0">
+              {[
+                {
+                  num: "01",
+                  icon: <Camera size={18} />,
+                  title: "Snap",
+                  desc: "Upload a screenshot or drag to select any part of your screen. Any format works — PNG, JPG, even a photo of a poster.",
+                },
+                {
+                  num: "02",
+                  icon: <Cpu size={18} />,
+                  title: "Extract",
+                  desc: "GPT-4o reads the image and instantly fills in title, date, time, location, and meeting links. Automatically.",
+                },
+                {
+                  num: "03",
+                  icon: <MousePointerClick size={18} />,
+                  title: "Add",
+                  desc: "Review the pre-filled form, make any edits, and hit Add to Google Calendar. Done in under two seconds.",
+                },
+              ].map((step, i) => (
+                <motion.div
+                  key={step.num}
+                  initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.12 }}
+                  className="flex gap-5 pb-10 last:pb-0 relative"
+                >
+                  {/* Vertical line */}
+                  {i < 2 && (
+                    <div className="absolute left-[19px] top-10 bottom-0 w-px bg-border" />
+                  )}
 
-      {/* ════════════════════════════════
-          HOW IT WORKS
-      ════════════════════════════════ */}
-      <section
-        id="how-it-works"
-        className="relative py-24 sm:py-32 border-t border-border"
-      >
-        <div className="container relative z-10">
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <p className="font-mono-label text-primary mb-3">How it works</p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-              Three steps.{" "}
-              <span className="text-gradient">Two seconds.</span>
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-5 md:gap-6 relative">
-            {/* Connector line */}
-            <div className="hidden md:block absolute top-10 left-[calc(16.67%+1.5rem)] right-[calc(16.67%+1.5rem)] h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-            {[
-              { num: "01", icon: <Camera size={22} />, title: "Snap", desc: "Upload a screenshot or drag-select any part of your screen." },
-              { num: "02", icon: <Cpu size={22} />, title: "Extract", desc: "GPT-4o reads the image and fills in title, date, time, location, and meeting links." },
-              { num: "03", icon: <MousePointerClick size={22} />, title: "Add", desc: "Review the pre-filled details and hit Add to Google Calendar. Done." },
-            ].map((step, i) => (
-              <motion.div
-                key={step.num}
-                initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.14 }}
-              >
-                <div className="glass-card card-glow-top p-7 sm:p-8 text-center relative group hover:border-primary/25 transition-all duration-300 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <p className="font-mono-label text-primary/45 mb-4">{step.num}</p>
-                  <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/18 transition-colors duration-300">
+                  {/* Icon circle */}
+                  <div className="shrink-0 w-10 h-10 rounded-full border-2 border-border bg-background flex items-center justify-center text-primary relative z-10">
                     {step.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
-                </div>
-              </motion.div>
-            ))}
+
+                  {/* Content */}
+                  <div className="pt-1.5 pb-2">
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <span className="mono-label text-[10px] text-muted-foreground">{step.num}</span>
+                      <h3 className="serif text-xl tracking-tight">{step.title}</h3>
+                    </div>
+                    <p className="sans text-sm text-muted-foreground leading-relaxed max-w-xs">
+                      {step.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* ════════════════════════════════
-          FEATURES
-      ════════════════════════════════ */}
-      <section
-        id="features"
-        className="relative py-24 sm:py-32 border-t border-border"
-      >
-        <div className="container relative z-10">
-
+          {/* Right: second mockup instance */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:sticky lg:top-24 flex justify-center"
           >
-            <p className="font-mono-label text-primary mb-3">Features</p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-              Everything you <span className="text-gradient">need</span>
-            </h2>
+            <div className="hover-lift">
+              <ExtensionMockup />
+            </div>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        </div>
+      </div>
+    </section>
+
+    {/* ══════════════════════════════════════════
+        FEATURES — editorial list, not card grid
+    ══════════════════════════════════════════ */}
+    <section id="features" className="py-24 sm:py-32 border-t border-border">
+      <div className="container">
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
+
+          {/* Left: heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5 }}
+            className="lg:sticky lg:top-24 self-start"
+          >
+            <span className="mono-label text-primary text-[11px]">Features</span>
+            <h2 className="serif mt-3 text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight">
+              Everything
+              <br />
+              <span className="serif-italic">you need.</span>
+            </h2>
+            <p className="sans text-sm text-muted-foreground mt-4 max-w-[220px] leading-relaxed">
+              Built to get out of your way and just work.
+            </p>
+          </motion.div>
+
+          {/* Right: feature list */}
+          <div className="border-t border-border">
             {[
-              { icon: <Cpu size={19} />, title: "AI-powered extraction", desc: "Reads any image format, even messy or partial screenshots." },
-              { icon: <Crop size={19} />, title: "Crop from any tab", desc: "Drag to select just the event — ignore everything else on screen." },
-              { icon: <PenLine size={19} />, title: "Edit before adding", desc: "Review and fix any field before it hits your calendar." },
-              { icon: <Link2 size={19} />, title: "Meeting link detection", desc: "Auto-detects Zoom, Meet, and Teams URLs from any source." },
-              { icon: <Clock size={19} />, title: "Recent history", desc: "See the last 10 events you've added at a glance." },
-              { icon: <Globe size={19} />, title: "Works everywhere", desc: "Eventbrite, email, Slack, LinkedIn — any page with event info." },
+              {
+                icon: <Cpu size={16} />,
+                title: "AI-powered extraction",
+                desc: "Reads any image format — screenshots, photos, even low-quality scans. GPT-4o handles the parsing so you don't have to.",
+              },
+              {
+                icon: <Crop size={16} />,
+                title: "Crop from any tab",
+                desc: "Drag to select just the event area. Ignore ads, banners, and everything else cluttering the page.",
+              },
+              {
+                icon: <PenLine size={16} />,
+                title: "Edit before adding",
+                desc: "The AI pre-fills everything but you always get to review. Fix a typo, adjust the time, or change the title before it hits your calendar.",
+              },
+              {
+                icon: <Link2 size={16} />,
+                title: "Meeting link detection",
+                desc: "Zoom, Google Meet, Microsoft Teams — AutoCal finds the link automatically and adds it to the event description.",
+              },
+              {
+                icon: <Clock size={16} />,
+                title: "Recent history",
+                desc: "Your last 10 events are saved so you can re-open or reference them without digging through your calendar.",
+              },
+              {
+                icon: <Globe size={16} />,
+                title: "Works everywhere",
+                desc: "Eventbrite, Gmail, Slack, LinkedIn, university portals, PDFs in browser — if you can see it, AutoCal can read it.",
+              },
             ].map((f, i) => (
               <motion.div
                 key={f.title}
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.07 }}
+                initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="feature-row"
               >
-                <div className="glass-card p-6 h-full group hover:border-primary/25 transition-all duration-300 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/18 transition-colors duration-300 relative">
+                <div className="flex gap-4 items-start">
+                  <div className="shrink-0 w-8 h-8 rounded-md bg-primary/10 text-primary flex items-center justify-center mt-0.5">
                     {f.icon}
                   </div>
-                  <h3 className="font-semibold mb-1.5 relative">{f.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed relative">{f.desc}</p>
+                  <div>
+                    <h3 className="sans font-semibold text-[0.95rem] text-foreground mb-1">{f.title}</h3>
+                    <p className="sans text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* ════════════════════════════════
-          CTA BANNER
-      ════════════════════════════════ */}
-      <section className="relative py-24 sm:py-32 border-t border-border overflow-hidden">
-        {/* Background gradient */}
-        <div
-          className="absolute inset-0 opacity-[0.07]"
-          style={{ background: "linear-gradient(125deg, hsl(234 100% 67%), hsl(193 100% 50%))" }}
-        />
-        <div className="absolute inset-0 dot-grid opacity-50" aria-hidden />
-
-        <div className="container relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+    {/* ══════════════════════════════════════════
+        CTA — dark inverse section
+    ══════════════════════════════════════════ */}
+    <section className="section-dark py-24 sm:py-36 overflow-hidden relative">
+      {/* Subtle radial */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 50% 0%, hsl(243 73% 59% / 0.15) 0%, transparent 70%)",
+        }}
+      />
+      <div className="container relative z-10 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span className="mono-label text-primary/80 text-[11px]">Free Chrome Extension</span>
+          <h2
+            className="serif mt-5 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-[-0.03em]"
+            style={{ color: "hsl(36 44% 94%)" }}
           >
-            <p className="font-mono-label text-primary mb-5">Free Chrome Extension</p>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-5">
-              Stop retyping.<br />
-              <span className="text-gradient">Start in 2 seconds.</span>
+            Stop retyping.
+            <br />
+            <span className="serif-italic" style={{ color: "hsl(243 73% 75%)" }}>
+              Start in 2 seconds.
+            </span>
+          </h2>
+          <p className="sans mt-6 text-base leading-relaxed max-w-sm mx-auto" style={{ color: "hsl(36 20% 65%)" }}>
+            Join users who never manually type event details again.
+          </p>
+          <a
+            href={CHROME_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-9 inline-flex"
+          >
+            <span className="btn-primary text-[0.9rem] px-8 h-12 gap-2.5">
+              Add to Chrome — It's Free
+              <ArrowRight size={15} />
+            </span>
+          </a>
+        </motion.div>
+      </div>
+    </section>
+
+    {/* ══════════════════════════════════════════
+        FAQ
+    ══════════════════════════════════════════ */}
+    <section className="py-24 sm:py-32 border-t border-border">
+      <div className="container">
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
+
+          {/* Left */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5 }}
+          >
+            <span className="mono-label text-primary text-[11px]">FAQ</span>
+            <h2 className="serif mt-3 text-3xl sm:text-4xl leading-tight tracking-tight">
+              Questions?
+              <br />
+              <span className="serif-italic">Answered.</span>
             </h2>
-            <p className="text-muted-foreground mb-9 max-w-sm mx-auto text-base leading-relaxed">
-              Join users who never manually type event details again.
-            </p>
-            <a href={CHROME_STORE_URL} target="_blank" rel="noopener noreferrer">
-              <button className="glow-button bg-primary text-primary-foreground hover:bg-primary/90 px-10 h-12 rounded-xl font-semibold text-base inline-flex items-center gap-2">
-                Add to Chrome — It's Free
-                <ArrowRight size={16} />
-              </button>
-            </a>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════
-          FAQ
-      ════════════════════════════════ */}
-      <section className="relative py-24 sm:py-32 border-t border-border">
-        <div className="container relative z-10 max-w-2xl">
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <p className="font-mono-label text-primary mb-3">FAQ</p>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              Questions?{" "}
-              <span className="text-gradient">Answered.</span>
-            </h2>
           </motion.div>
 
+          {/* Right */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
+            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <Accordion type="single" collapsible className="space-y-3">
+            <Accordion type="single" collapsible className="space-y-0 border-t border-border">
               {[
                 {
                   q: "Is it really free?",
-                  a: "Yes! AutoCal is completely free to use. We may introduce optional premium features in the future, but the core functionality will always be free.",
+                  a: "Yes — AutoCal is completely free. We may add optional premium features later, but the core extension will always be free.",
                 },
                 {
                   q: "Does it store my screenshots?",
-                  a: "No. Your screenshots are sent to OpenAI's API for processing and are never stored by us. They are discarded immediately after extraction.",
+                  a: "No. Screenshots are sent to OpenAI's API for processing and immediately discarded. We never store or see your images.",
                 },
                 {
-                  q: "Which calendars does it support?",
-                  a: "Currently AutoCal supports Google Calendar. We're exploring Outlook and Apple Calendar support for the future.",
+                  q: "Which calendars are supported?",
+                  a: "Google Calendar is fully supported. Outlook and Apple Calendar integration is on the roadmap.",
                 },
                 {
-                  q: "What image types can I upload?",
-                  a: "AutoCal supports PNG, JPG, JPEG, GIF, and WebP. You can also use the built-in crop tool to capture any part of your screen.",
+                  q: "What image types work?",
+                  a: "PNG, JPG, JPEG, GIF, and WebP. You can also use the built-in crop tool to capture any region of your screen directly.",
                 },
                 {
                   q: "Does it work on all websites?",
-                  a: "Yes! AutoCal works on any website — Eventbrite, Gmail, Slack, LinkedIn, or any page where you can see event information.",
+                  a: "Yes — any website. Gmail, Eventbrite, Slack, LinkedIn, university portals, PDFs in browser, you name it.",
                 },
-              ].map((item, i) => (
+              ].map((faq, i) => (
                 <AccordionItem
                   key={i}
                   value={`faq-${i}`}
-                  className="glass-card px-5 border-border overflow-hidden"
+                  className="border-b border-border"
                 >
-                  <AccordionTrigger className="text-sm font-semibold hover:no-underline py-4 text-left">
-                    {item.q}
+                  <AccordionTrigger className="sans text-sm font-medium hover:no-underline py-5 text-left text-foreground">
+                    {faq.q}
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm text-muted-foreground pb-4 leading-relaxed">
-                    {item.a}
+                  <AccordionContent className="sans text-sm text-muted-foreground pb-5 leading-relaxed">
+                    {faq.a}
                   </AccordionContent>
                 </AccordionItem>
               ))}
@@ -327,11 +400,11 @@ const Index = () => {
           </motion.div>
 
         </div>
-      </section>
+      </div>
+    </section>
 
-      <Footer />
-    </div>
-  );
-};
+    <Footer />
+  </div>
+);
 
 export default Index;

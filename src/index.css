@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,47 +6,45 @@
 
 @layer base {
   :root {
-    --background: 222 47% 5%;
-    --foreground: 220 25% 95%;
+    /* Warm cream light theme */
+    --background: 36 44% 95%;
+    --foreground: 24 58% 8%;
 
-    --card: 222 38% 8%;
-    --card-foreground: 220 25% 95%;
+    --card: 34 32% 91%;
+    --card-foreground: 24 58% 8%;
 
-    --popover: 222 38% 8%;
-    --popover-foreground: 220 25% 95%;
+    --popover: 34 32% 91%;
+    --popover-foreground: 24 58% 8%;
 
-    --primary: 234 100% 67%;
+    --primary: 243 73% 59%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 222 28% 13%;
-    --secondary-foreground: 220 25% 95%;
+    --secondary: 32 25% 86%;
+    --secondary-foreground: 24 58% 8%;
 
-    --muted: 222 28% 13%;
-    --muted-foreground: 220 12% 52%;
+    --muted: 33 22% 90%;
+    --muted-foreground: 25 12% 48%;
 
-    --accent: 193 100% 50%;
-    --accent-foreground: 222 47% 5%;
+    --accent: 243 73% 59%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 100% 100% / 0.08;
-    --input: 220 100% 100% / 0.08;
-    --ring: 234 100% 67%;
+    --border: 30 18% 82%;
+    --input: 30 18% 82%;
+    --ring: 243 73% 59%;
 
-    --radius: 0.75rem;
+    --radius: 0.625rem;
 
-    --sidebar-background: 222 47% 5%;
-    --sidebar-foreground: 220 25% 95%;
-    --sidebar-primary: 234 100% 67%;
+    --sidebar-background: 36 44% 95%;
+    --sidebar-foreground: 24 58% 8%;
+    --sidebar-primary: 243 73% 59%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 222 28% 13%;
-    --sidebar-accent-foreground: 220 25% 95%;
-    --sidebar-border: 220 100% 100% / 0.08;
-    --sidebar-ring: 234 100% 67%;
-
-    --glow-primary: 0 0 28px hsl(234 100% 67% / 0.35);
-    --glow-primary-hover: 0 0 44px hsl(234 100% 67% / 0.55);
+    --sidebar-accent: 34 32% 91%;
+    --sidebar-accent-foreground: 24 58% 8%;
+    --sidebar-border: 30 18% 82%;
+    --sidebar-ring: 243 73% 59%;
   }
 }
 
@@ -57,110 +55,113 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Instrument Serif', Georgia, serif;
   }
 }
 
 @layer utilities {
-  /* ── Glass effects ── */
-  .glass-card {
-    @apply bg-card/70 backdrop-blur-xl border border-border rounded-xl;
-  }
-  .glass-nav {
-    @apply bg-background/85 backdrop-blur-xl border-b border-border;
-  }
+  /* ── Serif display ── */
+  .serif { font-family: 'Instrument Serif', Georgia, serif; }
+  .serif-italic { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; }
+  .sans { font-family: 'DM Sans', sans-serif; }
 
-  /* ── Glow button ── */
-  .glow-button {
-    box-shadow: var(--glow-primary);
-    transition: box-shadow 0.2s ease, transform 0.15s ease, background-color 0.2s ease;
-  }
-  .glow-button:hover {
-    box-shadow: var(--glow-primary-hover);
-  }
-  .glow-button:active {
-    transform: scale(0.97);
-  }
-
-  /* ── Outline ghost button ── */
-  .ghost-button {
-    border: 1px solid hsl(234 100% 67% / 0.35);
-    transition: border-color 0.2s ease, background-color 0.2s ease;
-  }
-  .ghost-button:hover {
-    border-color: hsl(234 100% 67% / 0.7);
-    background-color: hsl(234 100% 67% / 0.07);
-  }
-
-  /* ── Typography ── */
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(125deg, hsl(234 100% 72%), hsl(193 100% 55%));
-  }
-  .font-mono-label {
-    font-family: 'DM Mono', monospace;
+  /* ── Mono label ── */
+  .mono-label {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.68rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
-  /* ── Dot grid background ── */
-  .dot-grid {
-    background-image: radial-gradient(circle, hsl(220 100% 100% / 0.055) 1px, transparent 1px);
-    background-size: 26px 26px;
+  /* ── Ink card (light cream card) ── */
+  .ink-card {
+    @apply bg-card border border-border rounded-xl;
   }
 
-  /* ── Noise texture overlay ── */
-  .noise::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.028;
-    pointer-events: none;
-    z-index: 9999;
+  /* ── Feature row border ── */
+  .feature-row {
+    @apply border-b border-border py-5 sm:py-6;
+  }
+  .feature-row:last-child {
+    @apply border-b-0;
   }
 
-  /* ── Floating animation ── */
-  .float {
-    animation: float 7s ease-in-out infinite;
+  /* ── Primary button ── */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground font-medium rounded-lg px-6 h-11 text-sm inline-flex items-center gap-2;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.15s ease, transform 0.1s ease;
+    box-shadow: 0 1px 3px hsl(243 73% 59% / 0.3), 0 4px 16px hsl(243 73% 59% / 0.15);
   }
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-primary:active { transform: scale(0.98); }
+
+  /* ── Ghost button ── */
+  .btn-ghost {
+    @apply border border-border text-foreground font-medium rounded-lg px-6 h-11 text-sm inline-flex items-center gap-2;
+    font-family: 'DM Sans', sans-serif;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-ghost:hover {
+    @apply bg-secondary border-foreground/20;
   }
 
-  /* ── Card top glow line ── */
-  .card-glow-top::before {
-    content: '';
-    position: absolute;
-    inset-x: 0;
-    top: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(234 100% 67% / 0.5), hsl(193 100% 50% / 0.4), transparent);
-    border-radius: inherit;
+  /* ── Stat number ── */
+  .stat-num {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
   }
 
-  /* ── iOS safe area helpers ── */
-  .pb-safe {
-    padding-bottom: env(safe-area-inset-bottom);
+  /* ── Timeline line ── */
+  .timeline-line {
+    @apply absolute left-[19px] top-10 bottom-0 w-px bg-border;
   }
-  .pt-safe {
-    padding-top: env(safe-area-inset-top);
+
+  /* ── Gradient text (indigo) ── */
+  .text-indigo-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(243 73% 59%), hsl(220 90% 65%));
+  }
+
+  /* ── Dark section (inverse) ── */
+  .section-dark {
+    background-color: hsl(24 58% 6%);
+    color: hsl(36 44% 94%);
+  }
+
+  /* ── Popup frame for mockup ── */
+  .popup-frame {
+    @apply rounded-2xl border border-border overflow-hidden;
+    box-shadow:
+      0 0 0 1px hsl(30 18% 76%),
+      0 8px 24px hsl(24 58% 8% / 0.1),
+      0 32px 64px hsl(24 58% 8% / 0.12);
+  }
+  .popup-titlebar {
+    @apply flex items-center gap-1.5 px-4 py-3 border-b border-border;
+    background: hsl(34 32% 88%);
+  }
+
+  /* ── iOS safe area ── */
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+  .pt-safe { padding-top: env(safe-area-inset-top); }
+
+  /* ── Subtle hover ── */
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px hsl(24 58% 8% / 0.1);
   }
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-/* iOS momentum scroll */
-body {
-  -webkit-overflow-scrolling: touch;
-  overflow-x: hidden;
-}
+html { scroll-behavior: smooth; }
+body { -webkit-overflow-scrolling: touch; overflow-x: hidden; }

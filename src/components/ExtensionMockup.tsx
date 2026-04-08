@@ -1,46 +1,53 @@
 const ExtensionMockup = () => (
-  <div className="w-full max-w-[360px] glass-card card-glow-top p-5 space-y-4 shadow-2xl border-primary/15 relative overflow-hidden">
-    {/* Subtle inner glow */}
-    <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none rounded-xl" />
-
-    {/* Header */}
-    <div className="flex items-center gap-2.5 relative">
-      <img src="/images/icon128.png" alt="" className="w-6 h-6 rounded-lg" />
-      <span className="font-display font-bold text-sm text-foreground">AutoCal</span>
-      <div className="ml-auto flex items-center gap-1.5">
-        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse-dot" />
-        <span className="font-mono-label text-[10px] text-muted-foreground">Ready</span>
+  <div className="popup-frame w-full max-w-[340px] bg-background">
+    {/* Title bar */}
+    <div className="popup-titlebar">
+      <span className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+      <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
+      <span className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
+      <div className="flex-1 flex items-center justify-center">
+        <div className="flex items-center gap-1.5">
+          <img src="/images/icon128.png" alt="" className="w-3.5 h-3.5 rounded" />
+          <span className="sans text-xs text-muted-foreground font-medium">AutoCal</span>
+        </div>
       </div>
     </div>
 
-    {/* Fields */}
-    <div className="space-y-2.5 relative">
+    {/* Body */}
+    <div className="p-5 space-y-3.5">
+      {/* Status */}
+      <div className="flex items-center gap-2 mb-1">
+        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+        <span className="mono-label text-muted-foreground text-[10px]">Event detected</span>
+      </div>
+
+      {/* Fields */}
       {[
-        { label: "Title", value: "Team Design Review", highlight: false },
-        { label: "Date", value: "March 20, 2026", highlight: false },
-        { label: "Time", value: "2:00 PM – 3:00 PM", highlight: false },
-        { label: "Location", value: "Conference Room B", highlight: false },
-        { label: "Meeting Link", value: "meet.google.com/abc-defg-hij", highlight: true },
-      ].map((field) => (
-        <div key={field.label}>
-          <label className="font-mono-label text-[10px] text-muted-foreground block mb-1">
-            {field.label}
-          </label>
-          <div className={`px-3 py-2 rounded-lg border text-sm ${
-            field.highlight
-              ? "bg-primary/8 border-primary/25 text-primary"
-              : "bg-secondary/70 border-border text-foreground"
+        { label: "Title", value: "Team Design Review", primary: true },
+        { label: "Date", value: "Thursday, March 20" },
+        { label: "Time", value: "2:00 – 3:00 PM EST" },
+        { label: "Location", value: "Conference Room B" },
+        { label: "Link", value: "meet.google.com/abc-defg", link: true },
+      ].map((f) => (
+        <div key={f.label}>
+          <span className="mono-label text-[9px] text-muted-foreground block mb-1">{f.label}</span>
+          <div className={`px-3 py-2 rounded-md text-sm border sans ${
+            f.primary
+              ? "bg-primary/8 border-primary/20 text-foreground font-medium"
+              : f.link
+              ? "bg-card border-border text-primary text-xs"
+              : "bg-card border-border text-foreground"
           }`}>
-            {field.value}
+            {f.value}
           </div>
         </div>
       ))}
-    </div>
 
-    {/* CTA */}
-    <button className="w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm glow-button relative">
-      Add to Google Calendar
-    </button>
+      {/* Button */}
+      <button className="btn-primary w-full justify-center mt-1 h-10 text-sm rounded-lg">
+        Add to Google Calendar
+      </button>
+    </div>
   </div>
 );
 
