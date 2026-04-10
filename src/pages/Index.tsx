@@ -77,7 +77,7 @@ const Index = () => (
         >
           <a href={CHROME_STORE_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
             <span className="btn-primary w-full sm:w-auto justify-center text-[0.9rem] px-7 h-12">
-              Add to Chrome — Free
+              Add to Chrome, it's Free
             </span>
           </a>
           <button
@@ -147,7 +147,7 @@ const Index = () => (
                   num: "01",
                   icon: <Camera size={18} />,
                   title: "Snap",
-                  desc: "Upload a screenshot or drag to select any part of your screen. Any format works — PNG, JPG, even a photo of a poster.",
+                  desc: "Upload a screenshot or drag to select any part of your screen. Any format works: PNG, JPG, even a photo of a poster.",
                 },
                 {
                   num: "02",
@@ -238,7 +238,7 @@ const Index = () => (
               {
                 icon: <Cpu size={16} />,
                 title: "AI-powered extraction",
-                desc: "Reads any image format — screenshots, photos, even low-quality scans. GPT-4o handles the parsing so you don't have to.",
+                desc: "Reads any image format: screenshots, photos, even low-quality scans. GPT-4o handles the parsing so you don't have to.",
               },
               {
                 icon: <Crop size={16} />,
@@ -253,7 +253,7 @@ const Index = () => (
               {
                 icon: <Link2 size={16} />,
                 title: "Meeting link detection",
-                desc: "Zoom, Google Meet, Microsoft Teams — AutoCal finds the link automatically and adds it to the event description.",
+                desc: "Zoom, Google Meet, Microsoft Teams. AutoCal finds the meeting link automatically and adds it to the event description.",
               },
               {
                 icon: <Clock size={16} />,
@@ -263,7 +263,7 @@ const Index = () => (
               {
                 icon: <Globe size={16} />,
                 title: "Works everywhere",
-                desc: "Eventbrite, Gmail, Slack, LinkedIn, university portals, PDFs in browser — if you can see it, AutoCal can read it.",
+                desc: "Eventbrite, Gmail, Slack, LinkedIn, university portals, PDFs in the browser. If you can see it, AutoCal can read it.",
               },
             ].map((f, i) => (
               <motion.div
@@ -327,7 +327,7 @@ const Index = () => (
             className="mt-9 inline-flex"
           >
             <span className="btn-primary text-[0.9rem] px-8 h-12 gap-2.5">
-              Add to Chrome — It's Free
+              Add to Chrome, It's Free
               <ArrowRight size={15} />
             </span>
           </a>
@@ -364,7 +364,7 @@ const Index = () => (
               {[
                 {
                   q: "Is it really free?",
-                  a: "Yes — AutoCal is completely free. We may add optional premium features later, but the core extension will always be free.",
+                  a: "Yes, AutoCal is completely free. We may add optional premium features later, but the core extension will always be free.",
                 },
                 {
                   q: "Does it store my screenshots?",
@@ -380,7 +380,7 @@ const Index = () => (
                 },
                 {
                   q: "Does it work on all websites?",
-                  a: "Yes — any website. Gmail, Eventbrite, Slack, LinkedIn, university portals, PDFs in browser, you name it.",
+                  a: "Yes, any website. Gmail, Eventbrite, Slack, LinkedIn, university portals, PDFs in browser, you name it.",
                 },
               ].map((faq, i) => (
                 <AccordionItem

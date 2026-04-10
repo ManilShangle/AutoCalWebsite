@@ -10,7 +10,7 @@ const Footer = () => (
         <div className="flex items-center gap-2.5">
           <img src="/images/icon128.png" alt="AutoCal" className="w-6 h-6 rounded-lg" />
           <span className="serif text-foreground">AutoCal</span>
-          <span className="text-muted-foreground/40 hidden sm:inline">—</span>
+          <span className="text-muted-foreground/40 hidden sm:inline">·</span>
           <span className="sans text-sm text-muted-foreground hidden sm:inline">Screenshot to Calendar</span>
         </div>
         <div className="flex items-center gap-6 sans text-sm text-muted-foreground">

@@ -95,7 +95,7 @@ const Navbar = () => {
             </button>
             <a href={CHROME_STORE_URL} target="_blank" rel="noopener noreferrer" className="mt-2">
               <span className="btn-primary w-full justify-center text-sm min-h-[44px]">
-                Add to Chrome — Free
+                Add to Chrome, Free
               </span>
             </a>
           </div>
