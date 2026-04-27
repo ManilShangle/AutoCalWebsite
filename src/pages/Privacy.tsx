@@ -40,7 +40,11 @@ const Privacy = () => (
             <p>We do not sell, trade, or rent your personal information to third parties. Period.</p>
           </section>
           <section>
-            <h2 className="text-lg font-semibold text-foreground mb-2">8. Contact</h2>
+            <h2 className="text-lg font-semibold text-foreground mb-2">8. Google API Limited Use Disclosure</h2>
+            <p>The use of raw or derived user data received from Workspace APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Google User Data Policy</a>, including the Limited Use requirements.</p>
+          </section>
+          <section>
+            <h2 className="text-lg font-semibold text-foreground mb-2">9. Contact</h2>
             <p>If you have any questions about this Privacy Policy, please reach out through our <Link to="/contact" className="text-primary hover:underline">contact page</Link>.</p>
           </section>
         </div>
